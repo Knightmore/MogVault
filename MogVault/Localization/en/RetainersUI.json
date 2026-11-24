@@ -1,0 +1,21 @@
+{
+  "Description": "Every retainer with gil, items and venture timer.",
+  "Help": "Updated when you open a summoning bell.",
+  "Summary": "{0} retainers, {1} ventures done",
+  "Empty": "No retainers yet. Open a summoning bell once with each character.",
+  "Character": "Character",
+  "Retainer": "Retainer",
+  "Job": "Job",
+  "Gil": "Gil",
+  "Items": "Items",
+  "Venture": "Venture",
+  "VentureDone": "Done",
+  "Unavailable": "Unavailable",
+  "UnavailableHint": "Listed at the summoning bell but cannot be summoned (for example, the extra retainer service lapsed). Its last known items are kept.",
+  "Updated": "Updated",
+  "SectionBags": "Bags ({0})",
+  "SectionEquipped": "Equipped ({0})",
+  "SectionCrystals": "Crystals ({0})",
+  "SectionMarket": "On the market ({0})",
+  "NoItems": "No items saved yet. Call this retainer once at a summoning bell."
+}

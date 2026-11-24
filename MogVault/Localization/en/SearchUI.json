@@ -1,0 +1,15 @@
+{
+  "Description": "Find where your items are across characters, retainers and free company chests.",
+  "SearchHint": "Item name (empty = everything)",
+  "AllCharacters": "All characters",
+  "AllContainers": "All containers",
+  "HqOnly": "HQ only",
+  "Searching": "Searching...",
+  "SearchFailed": "Search failed, see /xllog.",
+  "ColumnItem": "Item / location",
+  "ColumnQty": "Qty",
+  "ColumnVendor": "Vendor value",
+  "ColumnVendorTooltip": "Gil you would get selling all of them to a vendor (HQ and melded materia included)",
+  "ColumnUpdated": "Updated",
+  "Stale": "stale"
+}

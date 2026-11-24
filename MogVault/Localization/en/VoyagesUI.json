@@ -1,0 +1,17 @@
+{
+  "Description": "Submersibles and airships with return timers.",
+  "Help": "Updated when one of your characters uses the voyage control panel in the company workshop.",
+  "Summary": "{0} vessels, {1} back",
+  "Empty": "No vessels yet. Use the voyage control panel in your company workshop once.",
+  "FreeCompany": "Free company",
+  "OpenFreeCompany": "Show on the free company page",
+  "Type": "Type",
+  "Submersible": "Submersible",
+  "Airship": "Airship",
+  "Vessel": "Vessel",
+  "Rank": "Rank",
+  "Return": "Return",
+  "Docked": "Docked",
+  "Back": "Back",
+  "Updated": "Updated"
+}

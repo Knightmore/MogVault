@@ -1,0 +1,20 @@
+{
+  "Description": "Rank, Grand Company standing, members, chest gil and credits of your free companies.",
+  "Help": "Credits, rank progress and standing update at login. The foundation date and the standing with all three Grand Companies arrive when the free company window is opened, the member names when its member list is opened.",
+  "Empty": "No free companies yet. Log in with a character that is in one.",
+  "FreeCompany": "Free company",
+  "World": "World",
+  "Rank": "Rank",
+  "GrandCompany": "Grand company",
+  "Members": "Members",
+  "ChestGil": "Chest gil",
+  "Credits": "Credits",
+  "Characters": "Characters",
+  "Updated": "Updated",
+  "Founded": "Founded",
+  "DaysAgo": "{0:N0} days ago",
+  "RankProgress": "{0:N0} / {1:N0} to rank {2}",
+  "StandingLine": "{0}: {1} ({2}%)",
+  "Delete": "Delete this free company from MogVault (hold Ctrl and Shift and click)",
+  "DeleteCurrent": "The character you are logged in with is in this free company"
+}

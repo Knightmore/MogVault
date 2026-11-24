@@ -1,0 +1,17 @@
+{
+  "Description": "Every character with free company, job, main scenario progress and gil.",
+  "Summary": "{0} characters, {1} gil",
+  "Empty": "No characters yet. Log in once with each character.",
+  "Character": "Character",
+  "World": "World",
+  "FreeCompany": "Free company",
+  "OpenFreeCompany": "Show on the free company page",
+  "Job": "Job",
+  "Msq": "Main scenario",
+  "Gil": "Gil",
+  "RetainerGil": "Retainer gil",
+  "Total": "Total",
+  "Updated": "Updated",
+  "Delete": "Delete this character and its retainers from MogVault (hold Ctrl and Shift and click)",
+  "DeleteCurrent": "You are logged in with this character"
+}

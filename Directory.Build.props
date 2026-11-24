@@ -1,0 +1,8 @@
+<Project>
+    <PropertyGroup>
+        <UnderlingsProjectPath Condition="'$(UnderlingsProjectPath)' == ''">$(MSBuildThisFileDirectory)Underlings/Underlings/Underlings.csproj</UnderlingsProjectPath>
+    </PropertyGroup>
+
+    <Import Project="$(MSBuildThisFileDirectory)Directory.Build.props.user"
+            Condition="Exists('$(MSBuildThisFileDirectory)Directory.Build.props.user')" />
+</Project>

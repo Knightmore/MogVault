@@ -1,0 +1,15 @@
+{
+  "Author": "Knightmore",
+  "Name": "MogVault",
+  "Punchline": "Lost an item? Your moogle knows where, kupo!",
+  "Description": "Remembers what your characters, retainers and free companies hold, so you can look it up from any character.\n\n- Item search across characters, retainers, FC chests, glamour dresser and armoire\n- Storage info in the game's item tooltips (optional)\n- Jobs, currencies, quests and collections of all characters\n- Glamour dresser outfits and armoire per character\n- Retainer gil, items and ventures\n- FC chest, credits and submarine/airship voyages\n- Houses, apartments and private chambers with last entry time\n- Hide names for screenshots, daily backups\n- IPC for other plugins\n\nCommand: /mogvault",
+  "ApplicableVersion": "any",
+  "IconUrl": "https://s3.puni.sh/media/plugin/184/icon-gr984x188z.png",
+  "Tags": [
+    "inventory",
+    "retainer",
+    "search",
+    "glamour",
+    "collections"
+  ]
+}
