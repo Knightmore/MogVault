@@ -1,6 +1,10 @@
 # MogVault
 
+ ![Mogvault](/MogVault/Images/MogVault.png)
+
 MogVault is a Dalamud plugin for Final Fantasy XIV that remembers what your characters own. It saves your data in the background while you play, so you can look things up later from any character without logging in on the others.
+
+Repo: https://puni.sh/api/repository/knightmore
 
 * Item search across inventory, armoury chest, saddlebags, retainers and free company chests of every character
 * Vendor value of everything you hold
