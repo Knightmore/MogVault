@@ -62,6 +62,7 @@ public sealed class Plugin : IDalamudPlugin
         writer = new VaultWriter(
             store, pi.GetPluginConfigDirectory(), log, OnPublished, OnLoaded, Config.ForgetFreeCompanyDays, Config.Backups ? Math.Clamp(Config.BackupDays, 1, 30) : 0);
         Collections = new CollectionCatalog(data, unlocks);
+        CollectionSources = new CollectionSources(data, framework, log, Collections);
         capture = new InventoryCapture(inventory, framework, clientState, playerState, addonLifecycle, gameGui, unlocks, Collections, log, writer, Query, interop);
         ipc = new IpcService(pi, Query, Collections, () => capture.CurrentCharacterId, () => writer.IsLoaded);
         Search = new ItemSearch(data, Query);
@@ -89,6 +90,7 @@ public sealed class Plugin : IDalamudPlugin
     internal VaultQuery Query { get; }
     internal ItemSearch Search { get; }
     internal CollectionCatalog Collections { get; }
+    internal CollectionSources CollectionSources { get; }
 
     internal ulong CurrentCharacterId => capture.CurrentCharacterId;
 

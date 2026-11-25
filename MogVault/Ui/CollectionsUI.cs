@@ -15,6 +15,8 @@ namespace MogVault.Ui;
 internal sealed class CollectionsUI : ModuleUI
 {
     private const int MaxOwnersInTooltip = 12;
+    private const int MaxSourcesInTooltip = 8;
+    private const uint CardArtIcon = 88000;
 
     private long rowsKey = -1;
     private (string Name, ulong Id, int[] Owned)[] rows = [];
@@ -25,6 +27,7 @@ internal sealed class CollectionsUI : ModuleUI
     private ulong detailOwner;
     private int detailKind;
     private int filter;
+    private bool cardArt;
     private string search = string.Empty;
     private object? detailState;
     private (CollectionEntry Entry, int Owners)[] shown = [];
@@ -156,6 +159,11 @@ internal sealed class CollectionsUI : ModuleUI
 
         ImGui.SameLine();
         Widgets.SearchField("##mvCollectionSearch", ref search, T("SearchHint"), Widgets.Px(220));
+        if (sources[detailKind].Kind == CollectionKind.TripleTriadCards)
+        {
+            ImGui.SameLine();
+            Widgets.Checkbox(T("CardArt") + "##mvCardArt", ref cardArt);
+        }
 
         using (var kinds = ImRaii.TabBar("##mvCollectionKinds"))
         {
@@ -206,32 +214,38 @@ internal sealed class CollectionsUI : ModuleUI
         shown = [.. list];
     }
 
-    private void DrawGrid(Snapshot snapshot) =>
+    private void DrawGrid(Snapshot snapshot)
+    {
+        var art = cardArt && Plugin.P!.Collections.Sources[detailKind].Kind == CollectionKind.TripleTriadCards;
         IconGrid.Draw("##mvCollectionGrid", shown.Length,
-            i => new IconCell(shown[i].Entry.IconId, shown[i].Owners == 0, detailOwner == 0 && shown[i].Owners > 0 ? shown[i].Owners.ToString() : null),
+            i => new IconCell(art ? CardArtIcon + shown[i].Entry.RowId : shown[i].Entry.IconId, shown[i].Owners == 0, detailOwner == 0 && shown[i].Owners > 0 ? shown[i].Owners.ToString() : null),
             i => DrawTooltip(snapshot, shown[i].Entry, shown[i].Owners));
+    }
 
     private void DrawTooltip(Snapshot snapshot, CollectionEntry entry, int owners)
     {
         void Details()
         {
             ImGui.TextUnformatted(entry.Name);
+            var kind = Plugin.P!.Collections.Sources[detailKind].Kind;
             if (detailOwner != 0)
             {
                 Widgets.TextColored(owners > 0 ? V2Palette.Success : V2Palette.TextMuted, T(owners > 0 ? "Owned" : "Missing"));
-                return;
+            }
+            else
+            {
+                Widgets.TextMuted(string.Format(T("OwnedBy"), owners, holders.Length));
+                var names = holders.Where(c => c.Collections!.Get(kind)?.Has(entry.RowId) == true)
+                                   .Select(c => Names.Owner(snapshot, c))
+                                   .Order(StringComparer.CurrentCultureIgnoreCase)
+                                   .ToArray();
+                foreach (var name in names.Take(MaxOwnersInTooltip))
+                    ImGui.TextUnformatted(name);
+                if (names.Length > MaxOwnersInTooltip)
+                    Widgets.TextMuted(string.Format(T("More"), names.Length - MaxOwnersInTooltip));
             }
 
-            Widgets.TextMuted(string.Format(T("OwnedBy"), owners, holders.Length));
-            var kind = Plugin.P!.Collections.Sources[detailKind].Kind;
-            var names = holders.Where(c => c.Collections!.Get(kind)?.Has(entry.RowId) == true)
-                               .Select(c => Names.Owner(snapshot, c))
-                               .Order(StringComparer.CurrentCultureIgnoreCase)
-                               .ToArray();
-            foreach (var name in names.Take(MaxOwnersInTooltip))
-                ImGui.TextUnformatted(name);
-            if (names.Length > MaxOwnersInTooltip)
-                Widgets.TextMuted(string.Format(T("More"), names.Length - MaxOwnersInTooltip));
+            DrawSources(kind, entry.RowId);
         }
 
         if (entry.ItemId != 0)
@@ -243,6 +257,25 @@ internal sealed class CollectionsUI : ModuleUI
         ImGui.BeginTooltip();
         Details();
         ImGui.EndTooltip();
+    }
+
+    private void DrawSources(CollectionKind kind, uint rowId)
+    {
+        var lines = Plugin.P!.CollectionSources.For(kind, rowId);
+        if (lines is { Length: 0 })
+            return;
+        ImGui.Separator();
+        if (lines is null)
+        {
+            Widgets.TextMuted(T("SourcesLoading"));
+            return;
+        }
+
+        Widgets.TextMuted(T("Sources"));
+        foreach (var line in lines.Take(MaxSourcesInTooltip))
+            ImGui.TextUnformatted(line);
+        if (lines.Length > MaxSourcesInTooltip)
+            Widgets.TextMuted(string.Format(T("More"), lines.Length - MaxSourcesInTooltip));
     }
 
     private void Refresh()

@@ -18,6 +18,12 @@ internal sealed class MogVaultWindow(string version, string iconPath)
 {
     private static readonly IReadOnlyList<ChangelogEntry> Changelog =
     [
+        new("1.0.0.1",
+        [
+            "Collection tooltips show where to get an item: vendors with location, achievements, quests, recipes, fishing and more",
+            "TT cards show their Card List source, orchestrion rolls their category",
+            "New \"Card art\" toggle on the TT cards tab",
+        ]),
         new("1.0.0.0",
         [
             "First release",

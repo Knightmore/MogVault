@@ -66,6 +66,8 @@ internal sealed class CollectionCatalog
 
     public uint[] ItemsFor(CollectionKind kind, uint rowId) => links.Value.ByRow.TryGetValue((kind, rowId), out var items) ? items : [];
 
+    public HashSet<uint> UnlockItems() => [.. links.Value.ByItem.Keys];
+
     private CollectionSource Source<T>(
         CollectionKind kind, ExcelSheet<T> sheet, Func<T, bool> include, Func<T, bool> unlocked,
         uint unlockAction, Func<T, uint> unlockKey, Func<T, string> name, Func<T, uint> icon)
